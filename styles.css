@@ -1,0 +1,1366 @@
+/* ==========================================================================
+   Aust Wide Lending - Modern Design System & Stylesheet
+   ========================================================================== */
+
+:root {
+  /* Brand Color Palette - Authentic Aust Wide Heritage */
+  --pine-950: #040A06;
+  --pine-900: #081810;
+  --pine-850: #0B1E14; /* Primary Deep Base: Deep Forest Pine */
+  --pine-800: #112A1D;
+  --pine-700: #114227; /* Secondary Brand Tone: British Bottle Green */
+  --pine-600: #185533;
+  --pine-500: #237446;
+  
+  --gold-500: #C29B38; /* Primary Brand Accent: Warm Earthy Gold */
+  --gold-400: #D4A942;
+  --gold-300: #E2BC5A;
+  --gold-200: #EED284;
+  --gold-100: #FAF2D8;
+  --gold-glow: rgba(194, 155, 56, 0.32);
+  
+  --text-white: #FFFFFF;
+  --text-cream: #F8F9F7;
+  --text-muted: #9EAB9F;
+  --text-slate: #5F6E62;
+  --text-dark: #06120B; /* Deep dark pine text */
+  --text-body: #233127;
+  
+  /* High-Contrast Neutral & Slate Tokens */
+  --slate-950: #020617;
+  --slate-900: #0F172A;
+  --slate-800: #1E293B;
+  --slate-700: #334155;
+  --slate-600: #475569;
+  --slate-500: #64748B;
+  --slate-400: #94A3B8;
+  --slate-300: #CBD5E1;
+  --slate-200: #E2E8F0;
+  --slate-100: #F1F5F9;
+  --slate-50:  #F8FAFC;
+
+  /* Legacy & Compatibility Aliases */
+  --navy-950: #020617;
+  --navy-900: #0F172A;
+  --navy-800: #1E293B;
+  --navy-700: #334155;
+  --navy-600: #475569;
+  
+  --surface-white: #FFFFFF;
+  --surface-card: #FCFCFD; /* Soft Alabaster */
+  --surface-alt: #F8FAFC;
+  --surface-border: #E2E8F0;
+  
+  --green-700: #114227; /* British Bottle Green */
+  --green-500: #185533;
+  --green-50: #EAF3EC;
+  
+  /* Elevation Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(4, 10, 6, 0.15), 0 8px 10px -6px rgba(4, 10, 6, 0.1);
+  --shadow-hero-card: 0 25px 50px -12px rgba(0, 0, 0, 0.28), 0 0 0 1px rgba(226, 232, 240, 0.9);
+  --shadow-gold: 0 10px 25px -5px rgba(194, 155, 56, 0.45);
+  
+  /* Typography */
+  --font-sans: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Playfair Display', 'Georgia', serif;
+  
+  /* Layout */
+  --max-width: 1280px;
+  --nav-height: 90px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+  
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 350ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Base Resets */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-sans);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--pine-850); /* Deep Forest Pine */
+  color: var(--text-cream);
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  overflow-x: hidden;
+  background-color: var(--pine-850); /* Deep Forest Pine */
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button, input, select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+/* ==========================================================================
+   Navigation Bar (py-4 Vertical Padding & Deep Forest Pine Backdrop)
+   ========================================================================== */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: var(--nav-height);
+  padding: 1rem 0; /* py-4 */
+  z-index: 1000;
+  background-color: rgba(11, 30, 20, 0.84); /* Deep Forest Pine semi-transparent */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  transition: background-color var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base), padding var(--transition-base);
+  display: flex;
+  align-items: center;
+}
+
+.site-header.scrolled {
+  background-color: rgba(8, 24, 16, 0.96); /* Deep Forest Pine solid */
+  border-bottom-color: rgba(194, 155, 56, 0.35);
+  box-shadow: 0 10px 30px -10px rgba(4, 10, 6, 0.7);
+  padding: 0.75rem 0;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Brand Logo (+20% Scale for Sharp Legibility) */
+.brand-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.brand-link:hover {
+  transform: translateY(-1px);
+}
+
+.brand-link img {
+  height: 58px; /* Scaled up 20% from 48px */
+  width: auto;
+  object-fit: contain;
+}
+
+/* Desktop Nav Menu */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 2rem;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--text-cream);
+  padding: 0.5rem 0;
+  transition: color var(--transition-fast);
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gold-400);
+  border-radius: 2px;
+  transition: width var(--transition-base);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--text-white);
+}
+
+.nav-link.active::after,
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.chevron-icon {
+  width: 14px;
+  height: 14px;
+  transition: transform var(--transition-base);
+  stroke: var(--text-muted);
+}
+
+.has-dropdown:hover .chevron-icon {
+  transform: rotate(180deg);
+  stroke: var(--gold-300);
+}
+
+/* Dropdown Menu (Deep Forest Pine Glassmorphism) */
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  width: 280px;
+  background: rgba(11, 30, 20, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(194, 155, 56, 0.22);
+  border-radius: var(--radius-lg);
+  padding: 0.75rem;
+  box-shadow: var(--shadow-hero-card);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-base), transform var(--transition-base), visibility var(--transition-base);
+  pointer-events: none;
+  list-style: none;
+}
+
+.has-dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+
+.dropdown-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--radius-md);
+  color: var(--text-cream);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+}
+
+.dropdown-link:hover {
+  background-color: rgba(194, 155, 56, 0.16);
+  color: var(--gold-300);
+  transform: translateX(3px);
+}
+
+.dropdown-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--gold-400);
+  flex-shrink: 0;
+}
+
+/* Right Nav Actions */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-phone {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text-cream);
+  transition: color var(--transition-fast);
+}
+
+.nav-phone:hover {
+  color: var(--gold-300);
+}
+
+.phone-icon-pulse {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  background: rgba(194, 155, 56, 0.16);
+  color: var(--gold-400);
+  position: relative;
+}
+
+.phone-icon-pulse::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  border: 1px solid rgba(194, 155, 56, 0.45);
+  animation: pulse-ring 2.4s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.9); opacity: 0.8; }
+  70% { transform: scale(1.35); opacity: 0; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+
+/* Primary Action Buttons (Crisp Luminous Warm Gold #D99E26 + High-Contrast #08150E) */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: #D99E26; /* bg-[#D99E26] */
+  color: #08150E; /* text-[#08150E] */
+  font-size: 0.9375rem;
+  font-weight: 700; /* font-bold */
+  padding: 0.65rem 1.35rem;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px 0 rgba(217, 119, 6, 0.25); /* shadow-md shadow-amber-600/25 */
+  transition: transform var(--transition-base), box-shadow var(--transition-base), background-color var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary:hover {
+  background: #E5A932; /* hover:bg-[#E5A932] */
+  transform: translateY(-2px); /* hover:-translate-y-0.5 */
+  box-shadow: 0 10px 25px 0 rgba(245, 158, 11, 0.35); /* hover:shadow-lg hover:shadow-amber-500/35 */
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px 0 rgba(217, 119, 6, 0.25);
+}
+
+.btn-primary span {
+  font-weight: 700;
+  color: #08150E;
+}
+
+.btn-primary svg {
+  stroke: #08150E;
+  stroke-width: 2.5;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.10); /* bg-white/10 */
+  color: #FFFFFF; /* text-white */
+  font-size: 0.9375rem;
+  font-weight: 600;
+  padding: 0.65rem 1.35rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.30); /* border border-white/30 */
+  backdrop-filter: blur(4px); /* backdrop-blur-sm */
+  -webkit-backdrop-filter: blur(4px);
+  cursor: pointer;
+  transition: background-color var(--transition-base), border-color var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.20); /* hover:bg-white/20 */
+  border-color: rgba(255, 255, 255, 0.50);
+  transform: translateY(-2px);
+}
+
+/* Mobile Toggle */
+.mobile-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--text-white);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: var(--radius-sm);
+}
+
+.mobile-toggle svg {
+  width: 28px;
+  height: 28px;
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  padding-top: calc(var(--nav-height) + 2.5rem);
+  padding-bottom: 6rem;
+  display: flex;
+  align-items: center;
+  background-color: var(--pine-850); /* Deep Forest Pine */
+  background-image: url('assets/hero-home.jpg');
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+/* Asymmetric Gradient Overlay with Deep Forest Pine (from-[#081810] via-[#0B1E14]/80 to-transparent) */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right, 
+    #081810 0%, 
+    #081810 24%, 
+    rgba(11, 30, 20, 0.80) 58%, 
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+/* Left Column: Value Proposition & Hierarchy Spacing */
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem; /* Increased spacing between badge, headline, paragraph & CTAs */
+}
+
+/* Eyebrow Badge */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: fit-content;
+  background: rgba(17, 66, 39, 0.45); /* British Bottle Green */
+  border: 1px solid rgba(194, 155, 56, 0.45);
+  color: #E2BC5A;
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+}
+
+.badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--radius-full);
+  background-color: #C29B38;
+  box-shadow: 0 0 8px #C29B38;
+}
+
+/* Main H1 Headline: text-5xl lg:text-6xl leading-[1.1] font-extrabold tracking-tight */
+.hero-title {
+  font-size: clamp(3.5rem, 5.8vw, 4.65rem); /* text-5xl lg:text-6xl */
+  line-height: 1.1; /* leading-[1.1] */
+  font-weight: 800; /* font-extrabold */
+  color: #FFFFFF; /* text-white */
+  letter-spacing: -0.035em; /* tracking-tight */
+  margin: 0;
+}
+
+/* "Home Happen" with rich metallic gradient and subtle ambient glow */
+.hero-title-accent {
+  display: block;
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-style: normal;
+  letter-spacing: -0.035em;
+  background: linear-gradient(to right, #FDE087 0%, #E5A93C 50%, #C4821E 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  filter: drop-shadow(0 2px 10px rgba(229, 169, 60, 0.2));
+  margin-top: 0.2rem;
+}
+
+/* Sub-headline */
+.hero-description {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: #CBD5E1;
+  max-width: 590px;
+  margin: 0;
+}
+
+.hero-description strong {
+  color: var(--text-white);
+  font-weight: 600;
+}
+
+/* Hero Action CTAs */
+.hero-cta-group {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 0.25rem;
+}
+
+.hero-cta-group .btn-primary {
+  padding: 0.95rem 2rem;
+  font-size: 1.0625rem;
+}
+
+.hero-cta-group .btn-secondary {
+  padding: 0.95rem 1.85rem;
+  font-size: 1.0625rem;
+}
+
+/* Micro-Trust Strip under CTAs */
+.hero-stats {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  margin-top: 0.25rem;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.84rem;
+  color: var(--text-muted);
+}
+
+.stat-icon {
+  color: #C29B38;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.stat-item strong {
+  color: var(--text-cream);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   Right Column: Vertically Centered Mortgage Calculator Card
+   ========================================================================== */
+.calculator-wrapper {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.calculator-card {
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(12px); /* backdrop-blur-md */
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: var(--radius-xl);
+  padding: 1.75rem 2rem;
+  color: #0F172A; /* text-slate-900 high contrast */
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px #E2E8F0; /* shadow-2xl */
+  border: 1px solid #E2E8F0; /* border-slate-200 */
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.calculator-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #D99E26, #114227);
+}
+
+/* Card Header */
+.calculator-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.15rem;
+}
+
+.calculator-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #0F172A !important; /* text-slate-900 */
+  letter-spacing: -0.02em;
+}
+
+.calc-rate-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: #E8F2EC; /* Soft Bottle Green Tint */
+  color: #114227; /* British Bottle Green */
+  border: 1px solid #B7D9C4;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.rate-pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background-color: #114227; /* British Bottle Green */
+  box-shadow: 0 0 6px #114227;
+}
+
+/* Calculator Form Controls */
+.calculator-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-label {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #0F172A; /* High contrast dark charcoal */
+}
+
+.form-hint {
+  font-size: 0.775rem;
+  font-weight: 700;
+  color: #C29B38;
+}
+
+/* Input Fields */
+.input-with-symbol {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-currency-symbol {
+  position: absolute;
+  left: 1rem;
+  color: #0F172A !important; /* text-slate-900 */
+  font-weight: 800;
+  font-size: 1.15rem;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.currency-input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.25rem;
+  border: 1.5px solid #CBD5E1;
+  border-radius: var(--radius-md);
+  background-color: #FFFFFF !important;
+  color: #0F172A !important; /* Bold dark charcoal text-slate-900 */
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.currency-input::placeholder {
+  color: #94A3B8;
+  font-weight: 600;
+}
+
+.currency-input:focus {
+  outline: none;
+  border-color: #C29B38;
+  background-color: #FFFFFF !important;
+  color: #0F172A !important;
+  box-shadow: 0 0 0 3px rgba(194, 155, 56, 0.22);
+}
+
+/* Quick Deposit Ratio Buttons */
+.deposit-pills {
+  display: flex;
+  gap: 0.4rem;
+  margin-top: 0.35rem;
+}
+
+.deposit-pill {
+  flex: 1;
+  padding: 0.35rem 0;
+  background: #FFFFFF;
+  border: 1.5px solid #E2E8F0;
+  border-radius: var(--radius-sm);
+  color: #334155; /* text-slate-700 */
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  transition: all var(--transition-fast);
+}
+
+.deposit-pill:hover {
+  background: #F1F5F9;
+  color: #0F172A;
+  border-color: #CBD5E1;
+}
+
+.deposit-pill.active {
+  background: #0B1E14 !important; /* bg-[#0B1E14] text-white */
+  border-color: #0B1E14 !important;
+  color: #FFFFFF !important;
+  font-weight: 800;
+}
+
+/* Term & Type Row */
+.two-col-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.custom-select {
+  width: 100%;
+  padding: 0.75rem 2rem 0.75rem 0.85rem;
+  border: 1.5px solid #CBD5E1;
+  border-radius: var(--radius-md);
+  background-color: #FFFFFF;
+  color: #0F172A !important;
+  font-size: 0.975rem;
+  font-weight: 700;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230F172A' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 16px;
+  transition: border-color var(--transition-fast);
+}
+
+.custom-select:focus {
+  outline: none;
+  border-color: #C29B38;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(194, 155, 56, 0.22);
+}
+
+/* Interactive Slider */
+.range-slider {
+  width: 100%;
+  height: 5px;
+  border-radius: 5px;
+  background: #E2E8F0;
+  outline: none;
+  margin-top: 0.4rem;
+  -webkit-appearance: none;
+}
+
+.range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #C29B38;
+  cursor: pointer;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.1s ease;
+}
+
+.range-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+/* Output Display Box */
+.calc-result-box {
+  background: #F8FAFC;
+  border: 1.5px solid #E2E8F0;
+  border-radius: var(--radius-lg);
+  padding: 1.1rem 1.25rem;
+  margin-top: 0.15rem;
+  text-align: center;
+}
+
+.result-label {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.2rem;
+}
+
+.result-price-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.result-amount {
+  font-size: 2.25rem; /* text-3xl font-extrabold */
+  font-weight: 800; /* font-extrabold */
+  color: #0B1E14 !important; /* text-[#0B1E14] Deep Brand Green */
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
+
+.result-frequency {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #475569;
+}
+
+/* Frequency switcher */
+.freq-switcher {
+  display: inline-flex;
+  background: #E2E8F0; /* bg-slate-200 */
+  padding: 3px;
+  border-radius: var(--radius-full);
+  margin-top: 0.45rem;
+  gap: 2px;
+}
+
+.freq-btn {
+  background: transparent;
+  border: none;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #334155; /* text-slate-700 clear text */
+  padding: 0.35rem 0.9rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.freq-btn:hover {
+  color: #0F172A;
+}
+
+.freq-btn.active {
+  background: #0B1E14 !important; /* bg-[#0B1E14] text-white */
+  color: #FFFFFF !important;
+  font-weight: 800;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Loan Specs Breakdown Mini-Row - Tightened spacing */
+.loan-breakdown {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0.5rem;
+  margin-top: 0.5rem;
+  border-top: 1px dashed #CBD5E1;
+  font-size: 0.8125rem;
+  color: #475569;
+}
+
+.loan-breakdown strong {
+  color: #0F172A !important;
+  font-weight: 800;
+}
+
+/* Card CTA Button (Luminous Warm Gold #D99E26 + High-Contrast #08150E) */
+.btn-calc-cta {
+  width: 100%;
+  padding: 0.9rem 1.25rem;
+  font-size: 1.0625rem;
+  font-weight: 700; /* font-bold */
+  letter-spacing: -0.01em;
+  background: #D99E26; /* bg-[#D99E26] */
+  color: #08150E; /* text-[#08150E] */
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  box-shadow: 0 4px 14px 0 rgba(217, 119, 6, 0.25); /* shadow-md shadow-amber-600/25 */
+  transition: transform var(--transition-base), box-shadow var(--transition-base), background-color var(--transition-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-calc-cta:hover {
+  background: #E5A932; /* hover:bg-[#E5A932] */
+  transform: translateY(-2px); /* hover:-translate-y-0.5 */
+  box-shadow: 0 10px 25px 0 rgba(245, 158, 11, 0.35); /* hover:shadow-lg hover:shadow-amber-500/35 */
+}
+
+.btn-calc-cta:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px 0 rgba(217, 119, 6, 0.25);
+}
+
+.btn-calc-cta span {
+  font-weight: 700;
+  color: #08150E;
+}
+
+.btn-calc-cta svg {
+  stroke: #08150E;
+  stroke-width: 2.5;
+}
+
+.card-security-note {
+  text-align: center;
+  font-size: 0.72rem;
+  color: var(--text-slate);
+  margin-top: 0.4rem;
+}
+
+.card-disclaimer {
+  text-align: center;
+  font-size: 0.6875rem;
+  color: #94A3B8;
+  margin-top: 0.25rem;
+  line-height: 1.35;
+}
+
+/* ==========================================================================
+   Trust & Social Proof Strip (Immediately below hero fold)
+   ========================================================================== */
+.trust-section {
+  background: #FFFFFF;
+  border-top: 1px solid #E2E8F0;
+  border-bottom: 1px solid #E2E8F0;
+  padding: 2.75rem 0;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 4px 14px -3px rgba(0, 0, 0, 0.05);
+}
+
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.trust-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.15rem;
+  padding: 1.25rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(226, 232, 240, 0.8); /* border border-slate-200/80 */
+  background: #FFFFFF;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.trust-item:hover {
+  border-color: #CBD5E1;
+  background-color: #F8FAFC;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.08);
+}
+
+.trust-icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background: #FEF9EE; /* subtle warm tint bg-amber-50 */
+  border: 1px solid rgba(226, 232, 240, 0.9); /* crisp border border-slate-200/80 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #D99E26; /* Warm gold #D99E26 */
+  flex-shrink: 0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.trust-item:hover .trust-icon-box {
+  background: #D99E26;
+  border-color: #D99E26;
+  color: #FFFFFF;
+}
+
+.trust-icon-box svg {
+  width: 24px;
+  height: 24px;
+  fill: #D99E26; /* Icon fill #D99E26 */
+  stroke: #D99E26;
+  transition: fill var(--transition-fast), stroke var(--transition-fast);
+}
+
+.trust-item:hover .trust-icon-box svg {
+  fill: #FFFFFF;
+  stroke: #FFFFFF;
+}
+
+.trust-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.trust-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0F172A; /* text-slate-900 */
+  letter-spacing: -0.01em;
+}
+
+.trust-subtext {
+  font-size: 0.875rem;
+  color: #334155 !important; /* text-slate-700 font-medium */
+  font-weight: 500 !important; /* font-medium */
+  line-height: 1.45;
+}
+
+/* Partner Lenders Strip */
+.lenders-strip {
+  background: #F8FAFC;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.lenders-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.lenders-label {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #64748B; /* text-slate-500 */
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.lender-logos {
+  display: flex;
+  align-items: center;
+  gap: 2.25rem;
+  flex-wrap: wrap;
+}
+
+.lender-logo-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  transition: transform var(--transition-fast);
+}
+
+.lender-logo {
+  height: 22px;
+  max-height: 26px;
+  max-width: 110px;
+  width: auto;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.6;
+  transition: opacity var(--transition-base), filter var(--transition-base), transform var(--transition-fast);
+}
+
+.lender-logo-item:hover .lender-logo,
+.lender-logo:hover {
+  opacity: 1;
+  filter: grayscale(0%);
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   Mobile Navigation Drawer
+   ========================================================================== */
+.mobile-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(8, 24, 16, 0.98); /* Deep Forest Pine */
+  backdrop-filter: blur(20px);
+  z-index: 1100;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transform: translateX(-100%);
+  transition: transform var(--transition-base);
+}
+
+.mobile-drawer.open {
+  transform: translateX(0);
+}
+
+.mobile-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.drawer-close {
+  background: transparent;
+  border: none;
+  color: var(--text-white);
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.drawer-close svg {
+  width: 28px;
+  height: 28px;
+}
+
+.mobile-nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.mobile-nav-link {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-cream);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mobile-drawer-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ==========================================================================
+   Lead Capture Modal
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 10, 6, 0.85); /* Deep Forest Pine overlay */
+  backdrop-filter: blur(8px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-base), visibility var(--transition-base);
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-container {
+  background: #FFFFFF;
+  border-radius: var(--radius-xl);
+  max-width: 520px;
+  width: 100%;
+  padding: 2.25rem;
+  position: relative;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.6);
+  transform: scale(0.95);
+  transition: transform var(--transition-bounce);
+}
+
+.modal-overlay.active .modal-container {
+  transform: scale(1);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background: transparent;
+  border: none;
+  color: var(--text-slate);
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+@media (max-width: 1080px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+  .hero-copy {
+    text-align: center;
+    align-items: center;
+  }
+  
+  .hero-description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .hero-cta-group {
+    justify-content: center;
+  }
+  
+  .hero-stats {
+    justify-content: center;
+  }
+  
+  .calculator-wrapper {
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .trust-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .lenders-container {
+    flex-direction: column;
+    gap: 1.25rem;
+    text-align: center;
+  }
+  
+  .lender-logos {
+    justify-content: center;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 860px) {
+  .nav-menu {
+    display: none;
+  }
+  
+  .nav-phone {
+    display: none;
+  }
+  
+  .mobile-toggle {
+    display: block;
+  }
+  
+  .hero-title {
+    font-size: 2.75rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-section {
+    padding-top: calc(var(--nav-height) + 1.5rem);
+    padding-bottom: 3.5rem;
+  }
+  
+  .hero-title {
+    font-size: 2.25rem;
+  }
+  
+  .hero-description {
+    font-size: 1rem;
+  }
+  
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .hero-cta-group .btn-primary,
+  .hero-cta-group .btn-secondary {
+    width: 100%;
+  }
+  
+  .calculator-card {
+    padding: 1.5rem 1.25rem;
+  }
+  
+  .result-amount {
+    font-size: 2rem;
+  }
+  
+  .trust-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .hero-stats {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .lender-logos {
+    gap: 1.35rem;
+    justify-content: center;
+  }
+  
+  .lender-logo {
+    height: 18px;
+    max-width: 85px;
+  }
+}

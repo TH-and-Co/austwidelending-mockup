@@ -473,15 +473,31 @@ img, svg {
   display: none;
   background: transparent;
   border: none;
-  color: var(--text-white);
+  color: rgba(255, 255, 255, 0.9);
   cursor: pointer;
-  padding: 0.5rem;
-  border-radius: var(--radius-sm);
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-toggle:hover,
+.mobile-toggle:active {
+  background: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
 }
 
 .mobile-toggle svg {
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
+  stroke: currentColor;
+  stroke-width: 2.2;
 }
 
 /* ==========================================================================
@@ -1635,10 +1651,20 @@ img, svg {
   left: 0;
   width: 100%;
   height: 100vh;
+  height: 100dvh;
+  max-height: 100dvh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   background: rgba(8, 24, 16, 0.98); /* Deep Forest Pine */
   backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   z-index: 1100;
   padding: 1.5rem;
+  padding-top: max(1.5rem, env(safe-area-inset-top) + 0.5rem);
+  padding-left: max(1.5rem, env(safe-area-inset-left));
+  padding-right: max(1.5rem, env(safe-area-inset-right));
+  padding-bottom: max(1.5rem, env(safe-area-inset-bottom) + 1rem);
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1650,12 +1676,19 @@ img, svg {
   transform: translateX(0);
 }
 
+.mobile-drawer-body {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
 .mobile-drawer-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding-bottom: 1.5rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
 }
 
 .drawer-close {
@@ -1694,6 +1727,13 @@ img, svg {
   gap: 1rem;
   padding-top: 1.5rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+  margin-top: auto;
+}
+
+.mobile-drawer-footer .nav-phone {
+  display: flex !important;
+  color: var(--text-cream);
 }
 
 /* ==========================================================================
@@ -1724,6 +1764,9 @@ img, svg {
   border-radius: var(--radius-xl);
   max-width: 520px;
   width: 100%;
+  max-height: calc(100dvh - 2rem);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   padding: 2.25rem;
   position: relative;
   box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.6);
@@ -1816,19 +1859,52 @@ img, svg {
   }
 
   .nav-container {
-    padding: 0.75rem 1.25rem !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 1rem 1.25rem !important;
+    width: 100% !important;
+  }
+
+  .brand-link {
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  .brand-link img {
+    height: 44px !important;
+    max-width: 195px !important;
+    width: auto !important;
+    object-fit: contain !important;
+  }
+
+  .nav-menu-wrapper {
+    display: none !important;
   }
 
   .nav-menu {
-    display: none;
+    display: none !important;
   }
   
-  .nav-phone {
-    display: none;
+  .site-header .nav-phone {
+    display: none !important;
+  }
+
+  .site-header #navCtaBtn,
+  .nav-actions #navCtaBtn {
+    display: none !important;
+  }
+
+  .nav-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0 !important;
   }
   
   .mobile-toggle {
-    display: block;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
   /* Mobile Hero Flex Column Stacking */

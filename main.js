@@ -1,3 +1,5 @@
+import './styles.css';
+
 /**
  * Aust Wide Lending - Main Application Controller
  * Handles Navigation scroll effects, mobile drawer, interactive modal,
@@ -36,6 +38,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   mobileLinks.forEach(link => {
     link.addEventListener('click', closeDrawer);
+  });
+
+  // Hero "Calculate Borrowing Power" button: smooth scroll to calculator & focus input
+  const heroCalcBtn = document.getElementById('heroCalcBtn');
+  heroCalcBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    const calculatorEl = document.getElementById('calculator');
+    const propertyInput = document.getElementById('propertyValueInput');
+    if (calculatorEl) {
+      calculatorEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(() => {
+        propertyInput?.focus({ preventScroll: true });
+        propertyInput?.select();
+      }, 450);
+    }
   });
 
   // Pre-Approval Modal

@@ -24,6 +24,8 @@ class MortgageCalculator {
       depositPills: document.querySelectorAll('.deposit-pill'),
       loanTermSelect: document.getElementById('loanTermSelect'),
       repaymentTypeSelect: document.getElementById('repaymentTypeSelect'),
+      termButtons: document.querySelectorAll('[data-term]'),
+      typeButtons: document.querySelectorAll('[data-type]'),
       freqButtons: document.querySelectorAll('.freq-btn'),
       repaymentAmount: document.getElementById('repaymentAmount'),
       repaymentPeriod: document.getElementById('repaymentPeriod'),
@@ -134,18 +136,60 @@ class MortgageCalculator {
       });
     });
 
-    // Loan term select - bind both change and input
-    const onTermChange = (e) => {
-      this.loanTermYears = parseInt(e.target.value, 10);
-      this.updateCalculator();
-    };
-    this.elements.loanTermSelect.addEventListener('change', onTermChange);
-    this.elements.loanTermSelect.addEventListener('input', onTermChange);
+    // Segmented control: Loan Term buttons
+    if (this.elements.termButtons && this.elements.termButtons.length > 0) {
+      this.elements.termButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          this.elements.termButtons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          this.loanTermYears = parseInt(btn.dataset.term, 10);
+          if (this.elements.loanTermSelect) {
+            this.elements.loanTermSelect.value = String(this.loanTermYears);
+          }
+          this.updateCalculator();
+        });
+      });
+    }
 
-    // Repayment type select - bind both change and input
+    // Segmented control: Repayment Type buttons
+    if (this.elements.typeButtons && this.elements.typeButtons.length > 0) {
+      this.elements.typeButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          this.elements.typeButtons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          this.repaymentType = btn.dataset.type;
+          if (this.elements.repaymentTypeSelect) {
+            this.elements.repaymentTypeSelect.value = this.repaymentType;
+          }
+          this.updateCalculator();
+        });
+      });
+    }
+
+    // Loan term select - sync with buttons if changed externally
+    if (this.elements.loanTermSelect) {
+      const onTermChange = (e) => {
+        this.loanTermYears = parseInt(e.target.value, 10);
+        if (this.elements.termButtons) {
+          this.elements.termButtons.forEach(b => {
+            b.classList.toggle('active', parseInt(b.dataset.term, 10) === this.loanTermYears);
+          });
+        }
+        this.updateCalculator();
+      };
+      this.elements.loanTermSelect.addEventListener('change', onTermChange);
+      this.elements.loanTermSelect.addEventListener('input', onTermChange);
+    }
+
+    // Repayment type select - sync with buttons if changed externally
     if (this.elements.repaymentTypeSelect) {
       const onTypeChange = (e) => {
         this.repaymentType = e.target.value;
+        if (this.elements.typeButtons) {
+          this.elements.typeButtons.forEach(b => {
+            b.classList.toggle('active', b.dataset.type === this.repaymentType);
+          });
+        }
         this.updateCalculator();
       };
       this.elements.repaymentTypeSelect.addEventListener('change', onTypeChange);
@@ -284,9 +328,9 @@ class MortgageCalculator {
     // Update deposit hint
     if (this.elements.depositHint) {
       if (lvr > 80) {
-        this.elements.depositHint.innerHTML = `<span style="color:#D97706;">${depositPercent}% Deposit (LMI may apply)</span>`;
+        this.elements.depositHint.innerHTML = `<span style="color:#B45309; font-weight:600; font-size:0.75rem; letter-spacing:0.01em;">${depositPercent}% Deposit (LMI may apply)</span>`;
       } else {
-        this.elements.depositHint.innerHTML = `<span style="color:#059669;">✓ ${depositPercent}% Deposit (No LMI)</span>`;
+        this.elements.depositHint.innerHTML = `<span style="color:#15803D; font-weight:600; font-size:0.75rem; letter-spacing:0.01em;">✓ ${depositPercent}% Deposit (No LMI)</span>`;
       }
     }
 
